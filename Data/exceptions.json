@@ -1,0 +1,1802 @@
+[
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":45071.43,
+        "Confidence Score":0.89,
+        "Confidence Trend":[
+            0.88,
+            0.81,
+            0.88,
+            0.86,
+            0.82
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":46990.99,
+        "Confidence Score":0.92,
+        "Confidence Trend":[
+            1.0,
+            0.94,
+            0.94,
+            0.82,
+            0.82
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Open",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":-10013.9,
+        "Confidence Score":0.62,
+        "Confidence Trend":[
+            0.61,
+            0.68,
+            0.56,
+            0.62,
+            0.64
+        ],
+        "Age of Escalation (Days)":12,
+        "Status":"Open",
+        "Detected At":"2026-06-05 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":10754.49,
+        "Confidence Score":0.67,
+        "Confidence Trend":[
+            0.76,
+            0.68,
+            0.65,
+            0.57,
+            0.62
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Open",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-37796.18,
+        "Confidence Score":0.79,
+        "Confidence Trend":[
+            0.74,
+            0.82,
+            0.75,
+            0.79,
+            0.8
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Resolved",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":46958.46,
+        "Confidence Score":0.9,
+        "Confidence Trend":[
+            0.99,
+            0.95,
+            0.87,
+            0.91,
+            0.9
+        ],
+        "Age of Escalation (Days)":2,
+        "Status":"Open",
+        "Detected At":"2026-06-15 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-11132.27,
+        "Confidence Score":0.71,
+        "Confidence Trend":[
+            0.8,
+            0.73,
+            0.67,
+            0.67,
+            0.64
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":27224.48,
+        "Confidence Score":0.68,
+        "Confidence Trend":[
+            0.62,
+            0.72,
+            0.74,
+            0.7,
+            0.77
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Open",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":41495.97,
+        "Confidence Score":0.93,
+        "Confidence Trend":[
+            0.84,
+            0.89,
+            0.9,
+            0.98,
+            0.96
+        ],
+        "Age of Escalation (Days)":12,
+        "Status":"Open",
+        "Detected At":"2026-06-05 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":-2778.51,
+        "Confidence Score":0.65,
+        "Confidence Trend":[
+            0.69,
+            0.6,
+            0.6,
+            0.56,
+            0.69
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Resolved",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-6066.35,
+        "Confidence Score":0.68,
+        "Confidence Trend":[
+            0.69,
+            0.72,
+            0.61,
+            0.7,
+            0.69
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":44285.36,
+        "Confidence Score":0.83,
+        "Confidence Trend":[
+            0.92,
+            0.89,
+            0.86,
+            0.9,
+            0.89
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Open",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":39255.9,
+        "Confidence Score":0.81,
+        "Confidence Trend":[
+            0.78,
+            0.89,
+            0.76,
+            0.84,
+            0.71
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-19521.87,
+        "Confidence Score":0.66,
+        "Confidence Trend":[
+            0.6,
+            0.58,
+            0.63,
+            0.75,
+            0.62
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-9616.38,
+        "Confidence Score":0.63,
+        "Confidence Trend":[
+            0.58,
+            0.63,
+            0.59,
+            0.59,
+            0.54
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Resolved",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":267.9,
+        "Confidence Score":0.62,
+        "Confidence Trend":[
+            0.65,
+            0.66,
+            0.63,
+            0.61,
+            0.63
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Open",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-41914.67,
+        "Confidence Score":0.74,
+        "Confidence Trend":[
+            0.71,
+            0.77,
+            0.77,
+            0.75,
+            0.66
+        ],
+        "Age of Escalation (Days)":1,
+        "Status":"Escalated",
+        "Detected At":"2026-06-16 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-17921.99,
+        "Confidence Score":0.67,
+        "Confidence Trend":[
+            0.64,
+            0.61,
+            0.71,
+            0.73,
+            0.64
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Resolved",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":44052.33,
+        "Confidence Score":0.76,
+        "Confidence Trend":[
+            0.69,
+            0.73,
+            0.68,
+            0.84,
+            0.84
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Resolved",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-32504.51,
+        "Confidence Score":0.98,
+        "Confidence Trend":[
+            0.93,
+            0.9,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-15079.04,
+        "Confidence Score":0.88,
+        "Confidence Trend":[
+            0.86,
+            0.96,
+            0.95,
+            0.97,
+            0.94
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Resolved",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":8068.66,
+        "Confidence Score":0.75,
+        "Confidence Trend":[
+            0.65,
+            0.68,
+            0.76,
+            0.79,
+            0.78
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":21217.92,
+        "Confidence Score":0.69,
+        "Confidence Trend":[
+            0.66,
+            0.74,
+            0.73,
+            0.65,
+            0.7
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Open",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":13633.26,
+        "Confidence Score":0.7,
+        "Confidence Trend":[
+            0.68,
+            0.78,
+            0.73,
+            0.76,
+            0.7
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Resolved",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-30475.7,
+        "Confidence Score":0.88,
+        "Confidence Trend":[
+            0.93,
+            0.79,
+            0.98,
+            0.87,
+            0.84
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":24771.88,
+        "Confidence Score":0.97,
+        "Confidence Trend":[
+            1.0,
+            1.0,
+            1.0,
+            0.93,
+            0.95
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-18307.8,
+        "Confidence Score":0.67,
+        "Confidence Trend":[
+            0.74,
+            0.76,
+            0.58,
+            0.61,
+            0.7
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Open",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-24583.64,
+        "Confidence Score":0.72,
+        "Confidence Trend":[
+            0.76,
+            0.76,
+            0.69,
+            0.68,
+            0.78
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Escalated",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":36707.23,
+        "Confidence Score":0.96,
+        "Confidence Trend":[
+            0.99,
+            0.9,
+            0.87,
+            0.94,
+            0.87
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":7886.49,
+        "Confidence Score":0.77,
+        "Confidence Trend":[
+            0.7,
+            0.87,
+            0.84,
+            0.84,
+            0.72
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Open",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":-37293.95,
+        "Confidence Score":0.8,
+        "Confidence Trend":[
+            0.89,
+            0.79,
+            0.87,
+            0.74,
+            0.78
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Open",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-36725.46,
+        "Confidence Score":0.98,
+        "Confidence Trend":[
+            1.0,
+            0.93,
+            0.97,
+            0.9,
+            0.89
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":18849.99,
+        "Confidence Score":0.62,
+        "Confidence Trend":[
+            0.57,
+            0.63,
+            0.66,
+            0.65,
+            0.58
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":23789.69,
+        "Confidence Score":0.82,
+        "Confidence Trend":[
+            0.73,
+            0.83,
+            0.75,
+            0.74,
+            0.79
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Escalated",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-40584.3,
+        "Confidence Score":0.72,
+        "Confidence Trend":[
+            0.71,
+            0.64,
+            0.72,
+            0.71,
+            0.65
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Escalated",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-10149.53,
+        "Confidence Score":0.84,
+        "Confidence Trend":[
+            0.79,
+            0.74,
+            0.93,
+            0.84,
+            0.85
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Resolved",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":11585.12,
+        "Confidence Score":0.97,
+        "Confidence Trend":[
+            0.99,
+            1.0,
+            0.99,
+            0.95,
+            1.0
+        ],
+        "Age of Escalation (Days)":2,
+        "Status":"Open",
+        "Detected At":"2026-06-15 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":4561.68,
+        "Confidence Score":0.97,
+        "Confidence Trend":[
+            1.0,
+            0.91,
+            0.92,
+            0.91,
+            0.95
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Resolved",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":11825.39,
+        "Confidence Score":0.73,
+        "Confidence Trend":[
+            0.8,
+            0.63,
+            0.79,
+            0.69,
+            0.65
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":12894.28,
+        "Confidence Score":0.94,
+        "Confidence Trend":[
+            1.0,
+            0.95,
+            0.92,
+            0.95,
+            0.96
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-12798.19,
+        "Confidence Score":0.9,
+        "Confidence Trend":[
+            0.91,
+            0.85,
+            0.94,
+            0.95,
+            0.85
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Resolved",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":3432.75,
+        "Confidence Score":0.79,
+        "Confidence Trend":[
+            0.87,
+            0.77,
+            0.69,
+            0.87,
+            0.71
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Open",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":45006.2,
+        "Confidence Score":0.97,
+        "Confidence Trend":[
+            0.89,
+            0.89,
+            0.99,
+            0.98,
+            0.91
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-38653.54,
+        "Confidence Score":0.96,
+        "Confidence Trend":[
+            0.97,
+            0.95,
+            1.0,
+            0.93,
+            0.88
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":26151.06,
+        "Confidence Score":0.84,
+        "Confidence Trend":[
+            0.83,
+            0.78,
+            0.82,
+            0.92,
+            0.77
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Resolved",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-26677.19,
+        "Confidence Score":0.83,
+        "Confidence Trend":[
+            0.89,
+            0.92,
+            0.93,
+            0.88,
+            0.81
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Open",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":27714.69,
+        "Confidence Score":0.82,
+        "Confidence Trend":[
+            0.79,
+            0.81,
+            0.77,
+            0.8,
+            0.83
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Open",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":26719.49,
+        "Confidence Score":0.92,
+        "Confidence Trend":[
+            0.94,
+            1.0,
+            0.89,
+            0.88,
+            0.99
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Escalated",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":46322.25,
+        "Confidence Score":0.6,
+        "Confidence Trend":[
+            0.68,
+            0.61,
+            0.7,
+            0.51,
+            0.61
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Open",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":2309.78,
+        "Confidence Score":0.85,
+        "Confidence Trend":[
+            0.95,
+            0.89,
+            0.83,
+            0.9,
+            0.93
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Open",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-39324.39,
+        "Confidence Score":0.73,
+        "Confidence Trend":[
+            0.72,
+            0.7,
+            0.75,
+            0.65,
+            0.82
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":19816.17,
+        "Confidence Score":0.81,
+        "Confidence Trend":[
+            0.83,
+            0.76,
+            0.74,
+            0.73,
+            0.9
+        ],
+        "Age of Escalation (Days)":1,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-16 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":11341.52,
+        "Confidence Score":0.76,
+        "Confidence Trend":[
+            0.77,
+            0.69,
+            0.74,
+            0.82,
+            0.76
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Resolved",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-12326.1,
+        "Confidence Score":0.89,
+        "Confidence Trend":[
+            0.96,
+            0.96,
+            0.88,
+            0.87,
+            0.84
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Resolved",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":31290.1,
+        "Confidence Score":0.99,
+        "Confidence Trend":[
+            1.0,
+            1.0,
+            1.0,
+            0.97,
+            0.94
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Resolved",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":45405.1,
+        "Confidence Score":0.84,
+        "Confidence Trend":[
+            0.89,
+            0.75,
+            0.79,
+            0.74,
+            0.84
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Resolved",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":2016.35,
+        "Confidence Score":0.93,
+        "Confidence Trend":[
+            0.85,
+            0.99,
+            0.95,
+            0.93,
+            0.91
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Resolved",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":13936.14,
+        "Confidence Score":0.91,
+        "Confidence Trend":[
+            0.81,
+            0.88,
+            0.93,
+            0.89,
+            0.9
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Open",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-15174.45,
+        "Confidence Score":0.8,
+        "Confidence Trend":[
+            0.76,
+            0.8,
+            0.84,
+            0.86,
+            0.79
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Resolved",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":26891.77,
+        "Confidence Score":0.63,
+        "Confidence Trend":[
+            0.63,
+            0.6,
+            0.66,
+            0.58,
+            0.55
+        ],
+        "Age of Escalation (Days)":5,
+        "Status":"Resolved",
+        "Detected At":"2026-06-12 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":-36117.28,
+        "Confidence Score":0.85,
+        "Confidence Trend":[
+            0.83,
+            0.92,
+            0.85,
+            0.94,
+            0.87
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":32179.06,
+        "Confidence Score":0.73,
+        "Confidence Trend":[
+            0.65,
+            0.65,
+            0.72,
+            0.67,
+            0.7
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":19039.48,
+        "Confidence Score":0.62,
+        "Confidence Trend":[
+            0.66,
+            0.62,
+            0.55,
+            0.6,
+            0.52
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-41548.3,
+        "Confidence Score":0.83,
+        "Confidence Trend":[
+            0.8,
+            0.83,
+            0.85,
+            0.8,
+            0.82
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Open",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-46331.68,
+        "Confidence Score":0.7,
+        "Confidence Trend":[
+            0.77,
+            0.75,
+            0.61,
+            0.77,
+            0.67
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":23740.52,
+        "Confidence Score":0.67,
+        "Confidence Trend":[
+            0.61,
+            0.64,
+            0.59,
+            0.75,
+            0.69
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Open",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":28917.12,
+        "Confidence Score":0.79,
+        "Confidence Trend":[
+            0.81,
+            0.84,
+            0.78,
+            0.72,
+            0.75
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":14591.72,
+        "Confidence Score":0.82,
+        "Confidence Trend":[
+            0.79,
+            0.91,
+            0.72,
+            0.77,
+            0.79
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":35081.75,
+        "Confidence Score":0.63,
+        "Confidence Trend":[
+            0.71,
+            0.55,
+            0.63,
+            0.61,
+            0.73
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Open",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":7599.84,
+        "Confidence Score":0.96,
+        "Confidence Trend":[
+            0.96,
+            1.0,
+            1.0,
+            1.0,
+            0.97
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Resolved",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":33858.26,
+        "Confidence Score":0.68,
+        "Confidence Trend":[
+            0.67,
+            0.68,
+            0.63,
+            0.6,
+            0.7
+        ],
+        "Age of Escalation (Days)":10,
+        "Status":"Open",
+        "Detected At":"2026-06-07 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":610.4,
+        "Confidence Score":0.96,
+        "Confidence Trend":[
+            0.87,
+            0.93,
+            0.89,
+            0.87,
+            1.0
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-41213.19,
+        "Confidence Score":0.65,
+        "Confidence Trend":[
+            0.67,
+            0.64,
+            0.63,
+            0.62,
+            0.74
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Escalated",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":46502.69,
+        "Confidence Score":0.65,
+        "Confidence Trend":[
+            0.59,
+            0.63,
+            0.74,
+            0.69,
+            0.56
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Resolved",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":29526.73,
+        "Confidence Score":0.68,
+        "Confidence Trend":[
+            0.62,
+            0.63,
+            0.71,
+            0.76,
+            0.64
+        ],
+        "Age of Escalation (Days)":14,
+        "Status":"Resolved",
+        "Detected At":"2026-06-03 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":18298.21,
+        "Confidence Score":0.78,
+        "Confidence Trend":[
+            0.77,
+            0.74,
+            0.83,
+            0.78,
+            0.73
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Open",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":4355.29,
+        "Confidence Score":0.95,
+        "Confidence Trend":[
+            0.94,
+            0.92,
+            1.0,
+            0.99,
+            0.88
+        ],
+        "Age of Escalation (Days)":3,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-14 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-457.64,
+        "Confidence Score":0.89,
+        "Confidence Trend":[
+            0.82,
+            0.85,
+            0.84,
+            0.94,
+            0.8
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Escalated",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":26245.87,
+        "Confidence Score":0.94,
+        "Confidence Trend":[
+            0.95,
+            0.92,
+            0.93,
+            0.96,
+            0.94
+        ],
+        "Age of Escalation (Days)":1,
+        "Status":"Open",
+        "Detected At":"2026-06-16 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-1364.25,
+        "Confidence Score":0.76,
+        "Confidence Trend":[
+            0.79,
+            0.8,
+            0.77,
+            0.71,
+            0.73
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Escalated",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-15747.57,
+        "Confidence Score":0.69,
+        "Confidence Trend":[
+            0.78,
+            0.62,
+            0.71,
+            0.69,
+            0.71
+        ],
+        "Age of Escalation (Days)":7,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-10 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":9296.29,
+        "Confidence Score":0.64,
+        "Confidence Trend":[
+            0.54,
+            0.67,
+            0.69,
+            0.61,
+            0.55
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Escalated",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-39575.3,
+        "Confidence Score":0.93,
+        "Confidence Trend":[
+            0.85,
+            1.0,
+            1.0,
+            0.85,
+            1.0
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":9127.54,
+        "Confidence Score":0.76,
+        "Confidence Trend":[
+            0.7,
+            0.82,
+            0.78,
+            0.68,
+            0.74
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Escalated",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":42296.02,
+        "Confidence Score":0.78,
+        "Confidence Trend":[
+            0.77,
+            0.72,
+            0.77,
+            0.71,
+            0.72
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Escalated",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":-8107.46,
+        "Confidence Score":0.96,
+        "Confidence Trend":[
+            0.92,
+            0.9,
+            0.9,
+            0.96,
+            1.0
+        ],
+        "Age of Escalation (Days)":1,
+        "Status":"Escalated",
+        "Detected At":"2026-06-16 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":5730.54,
+        "Confidence Score":0.94,
+        "Confidence Trend":[
+            0.9,
+            0.9,
+            0.92,
+            0.93,
+            1.0
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Open",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":12497.6,
+        "Confidence Score":0.75,
+        "Confidence Trend":[
+            0.71,
+            0.79,
+            0.76,
+            0.76,
+            0.75
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Trade Break",
+        "Variance (USD)":-34475.98,
+        "Confidence Score":0.67,
+        "Confidence Trend":[
+            0.72,
+            0.62,
+            0.75,
+            0.68,
+            0.73
+        ],
+        "Age of Escalation (Days)":13,
+        "Status":"Open",
+        "Detected At":"2026-06-04 00:51:21",
+        "Root Cause":"Price mismatch on execution",
+        "Possible Reason":"Broker execution price differs from internal fill due to slippage."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"FX Break",
+        "Variance (USD)":33978.89,
+        "Confidence Score":0.94,
+        "Confidence Trend":[
+            0.88,
+            0.89,
+            0.97,
+            0.84,
+            0.86
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Open",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Stale FX rate used",
+        "Possible Reason":"System failed to fetch the latest EOD spot rate from data provider."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-32145.53,
+        "Confidence Score":0.85,
+        "Confidence Trend":[
+            0.8,
+            0.89,
+            0.92,
+            0.92,
+            0.83
+        ],
+        "Age of Escalation (Days)":8,
+        "Status":"Open",
+        "Detected At":"2026-06-09 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Alpha Equity Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-9360.77,
+        "Confidence Score":0.73,
+        "Confidence Trend":[
+            0.65,
+            0.67,
+            0.64,
+            0.67,
+            0.75
+        ],
+        "Age of Escalation (Days)":2,
+        "Status":"Open",
+        "Detected At":"2026-06-15 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":39267.17,
+        "Confidence Score":0.92,
+        "Confidence Trend":[
+            0.99,
+            0.89,
+            0.83,
+            0.99,
+            0.89
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Open",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-6387.35,
+        "Confidence Score":0.71,
+        "Confidence Trend":[
+            0.77,
+            0.63,
+            0.72,
+            0.81,
+            0.7
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Resolved",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Emerging Markets Fund",
+        "Break Type":"Cash Break",
+        "Variance (USD)":-1522.16,
+        "Confidence Score":0.8,
+        "Confidence Trend":[
+            0.83,
+            0.75,
+            0.73,
+            0.87,
+            0.9
+        ],
+        "Age of Escalation (Days)":9,
+        "Status":"Under Investigation",
+        "Detected At":"2026-06-08 00:51:21",
+        "Root Cause":"Missing wire transfer confirmation",
+        "Possible Reason":"Counterparty delay in settling cash or mismatched settlement dates."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-32832.07,
+        "Confidence Score":0.71,
+        "Confidence Trend":[
+            0.72,
+            0.77,
+            0.71,
+            0.62,
+            0.69
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Resolved",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":22020.26,
+        "Confidence Score":0.64,
+        "Confidence Trend":[
+            0.72,
+            0.71,
+            0.66,
+            0.66,
+            0.67
+        ],
+        "Age of Escalation (Days)":6,
+        "Status":"Open",
+        "Detected At":"2026-06-11 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":41441.19,
+        "Confidence Score":0.76,
+        "Confidence Trend":[
+            0.74,
+            0.73,
+            0.85,
+            0.7,
+            0.68
+        ],
+        "Age of Escalation (Days)":12,
+        "Status":"Escalated",
+        "Detected At":"2026-06-05 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Yield Plus Fund",
+        "Break Type":"Position Break",
+        "Variance (USD)":-43175.03,
+        "Confidence Score":0.93,
+        "Confidence Trend":[
+            0.97,
+            0.89,
+            0.94,
+            0.93,
+            0.96
+        ],
+        "Age of Escalation (Days)":11,
+        "Status":"Open",
+        "Detected At":"2026-06-06 00:51:21",
+        "Root Cause":"Corporate action not applied",
+        "Possible Reason":"Stock split or dividend wasn't processed in internal accounting system."
+    },
+    {
+        "Fund Name":"Global Macro Fund",
+        "Break Type":"Custodian Break",
+        "Variance (USD)":-1624.51,
+        "Confidence Score":0.71,
+        "Confidence Trend":[
+            0.78,
+            0.78,
+            0.8,
+            0.64,
+            0.73
+        ],
+        "Age of Escalation (Days)":4,
+        "Status":"Open",
+        "Detected At":"2026-06-13 00:51:21",
+        "Root Cause":"Data file formatting error",
+        "Possible Reason":"Custodian sent the feed with an unexpected delimiter or missing column."
+    }
+]
