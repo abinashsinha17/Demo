@@ -69,7 +69,7 @@ if "exception_id" in st.query_params:
     with col_d1:
         st.info(f"**Root Cause:** {exc_data['Root Cause']}")
         st.warning(f"**Status:** {exc_data['Status']}")
-        st.metric("Net Discrepancy Impact", f"${exc_data['Net Discrepancy (USD)']:,.2f}")
+        st.metric("Internal Impact", f"${exc_data['Internal Value (USD)']:,.2f}")
     with col_d2:
         st.error(f"**Possible Reason:** {exc_data['Possible Reason']}")
         st.success(f"**Resolution Recommendation:** {exc_data['Recommendation']}")
@@ -82,6 +82,67 @@ if "exception_id" in st.query_params:
     fig_trend.add_trace(go.Scatter(x=[f"Day {i+1}" for i in range(5)], y=trend_data, mode='lines+markers', name='Confidence'))
     fig_trend.update_layout(title=f"Confidence Trend (Last 5 Days)", yaxis_title="ML Score", yaxis_range=[0, 1])
     st.plotly_chart(fig_trend, width="stretch")
+    
+    st.markdown("---")
+    st.subheader("Machine Learning Explainability (SHAP)")
+    
+    col_shap1, col_shap2 = st.columns(2)
+    with col_shap1:
+        st.write(f"**Exception ID**: {exc_data['Exception ID']}")
+        st.write(f"**Predicted Severity**: {exc_data['Scenario']}")
+        st.write(f"**Confidence**: {exc_data['Confidence Score']*100:.1f}%")
+        
+    with col_shap2:
+        try:
+            import shap
+            import xgboost as xgb
+            import pickle
+            
+            metadata_path = r"e:\\Project\\models\\nav_metadata.pkl"
+            rec_path = r"e:\\Project\\models\\recommendation.json"
+            
+            if os.path.exists(metadata_path) and os.path.exists(rec_path):
+                with open(metadata_path, "rb") as f:
+                    metadata = pickle.load(f)
+                features = metadata['features']
+                
+                # Prepare single row for SHAP inference
+                shap_row = exc_data[features].to_frame().T
+                for col in features:
+                    if col in ['Break Type', 'Fund Name']:
+                        shap_row[col] = shap_row[col].astype('category')
+                    else:
+                        shap_row[col] = pd.to_numeric(shap_row[col], errors='coerce')
+                    
+                model_rec = xgb.XGBClassifier()
+                model_rec.load_model(rec_path)
+                
+                explainer = shap.TreeExplainer(model_rec)
+                shap_vals = explainer.shap_values(shap_row)
+                
+                # Get prediction index to extract the correct SHAP matrix
+                pred_idx = model_rec.predict(shap_row)[0]
+                class_shap_vals = shap_vals[pred_idx][0]
+                
+                # Zip and sort top drivers
+                driver_df = pd.DataFrame({
+                    "Feature": features,
+                    "Impact": class_shap_vals,
+                    "Value": shap_row.iloc[0].values
+                })
+                driver_df['Abs_Impact'] = driver_df['Impact'].abs()
+                top_drivers = driver_df.sort_values(by='Abs_Impact', ascending=False).head(3)
+                
+                st.write("**Top Drivers:**")
+                for i, row in enumerate(top_drivers.itertuples(), 1):
+                    # Format value cleanly if it's a float
+                    val = f"${row.Value:,.2f}" if isinstance(row.Value, (int, float)) and 'USD' in row.Feature else row.Value
+                    st.write(f"{i}. {row.Feature} = {val}")
+                    
+        except ImportError:
+            st.warning("SHAP library is not installed or loading. Run 'pip install shap' to view live explainability.")
+        except Exception as e:
+            st.error(f"SHAP Explainer Error: {e}")
     
     st.markdown("---")
     st.subheader("NVIDIA AI Analysis")
@@ -98,8 +159,8 @@ if "exception_id" in st.query_params:
     
     exception_inputs = {
         "Exception Type": exc_data['Break Type'],
-        "Severity": "Critical" if exc_data['Status'] == 'Escalated' else ("High" if abs(exc_data['Net Discrepancy (USD)']) > 25000 else "Medium"),
-        "NAV Impact (USD)": exc_data['Net Discrepancy (USD)'],
+        "Severity": "Critical" if exc_data['Status'] == 'Escalated' else ("High" if abs(exc_data['Internal Value (USD)']) > 25000 else "Medium"),
+        "NAV Impact (USD)": exc_data['Internal Value (USD)'],
         "Fund / Strategy": exc_data['Fund Name'],
         "Data Source": data_source_map.get(exc_data['Break Type'], "External Vendor vs Internal"),
         "Confidence Score": exc_data['Confidence Score'],
@@ -108,17 +169,43 @@ if "exception_id" in st.query_params:
         "Time-Sensitivity": f"{exc_data['Age of Escalation (Days)']} Days Old"
     }
 
-    engine = RoutingDecisionEngine(strategy="Hybrid")
+    from agentic_workflow import build_agentic_workflow
+    workflow = build_agentic_workflow()
     
     col_ai1, col_ai2 = st.columns(2)
     with col_ai1:
-        st.write("**Routing & Impact Analysis (Llama 3.3 70B):**")
-        with st.spinner("Analyzing routing and impact..."):
-            routing_analysis = engine.determine_route(exception_inputs)
-            st.info(routing_analysis)
+        st.write("**LangGraph Supervisor Orchestration:**")
+        with st.spinner("Supervisor routing to specific skill nodes..."):
+            initial_state = {
+                "exception": {
+                    "exception_id": exc_data['Exception ID'],
+                    "break_type": exc_data['Break Type'],
+                    "discrepancy_usd": exc_data['Internal Value (USD)'],
+                    "status": "New"
+                },
+                "audit_trail": [],
+                "evidence": [],
+            }
+            final_state = workflow.invoke(initial_state)
+            
+            st.success(f"**Supervisor Status:** {final_state.get('status')} via {final_state.get('next_skill', 'Agent')}")
+            st.info(f"**Severity:** {final_state.get('severity')} | **Priority:** {final_state.get('priority_score')}")
+            
+            with st.expander("View LangGraph Audit Trail"):
+                for log in final_state.get('audit_trail', []):
+                    st.write(f"- {log}")
+                    
+            with st.expander("View Skill Evidence Collected"):
+                for ev in final_state.get('evidence', []):
+                    st.write(ev)
+            
+            st.write(f"**Triage Summary:** {final_state.get('triage_summary', 'N/A')}")
             
     with col_ai2:
         st.write("**Root Cause Analysis (Nemotron Reasoning):**")
+        
+        from nvidia_ai_layer import NVIDIAAILayer
+        ai_layer = NVIDIAAILayer()
         
         import yfinance as yf
         
@@ -143,10 +230,7 @@ Perform a detailed Root Cause Analysis on the following NAV exception:
 - **Quantity of Shares**: {exc_data.get('Quantity', 0):,.0f}
 - **Internal Price (Per Share)**: ${exc_data.get('Internal Price (USD)', 0):,.2f}
 - **Internal Book Value (Total Position)**: ${exc_data.get('Internal Value (USD)', 0):,.2f}
-- **Custodian External Value (Total Position)**: ${exc_data.get('External Value (USD)', 0):,.2f}
 - **MCP Live Market Price (Primary Asset)**: {mcp_market_price}
-- **Net Discrepancy (Total USD)**: ${exc_data['Net Discrepancy (USD)']:,.2f}
-- **Potential Reason**: {exc_data['Possible Reason']}
 - **Age**: {exc_data['Age of Escalation (Days)']} days
 
 Please format your response clearly into the following sections:
@@ -160,10 +244,28 @@ Please format your response clearly into the following sections:
             st.code(rca_prompt, language="markdown")
             
         with st.spinner("Performing deep Root Cause Analysis using Internal & Market Data..."):
-            rca_result = engine.ai_layer.reasoning_nim.invoke(rca_prompt)
+            rca_result = ai_layer.reasoning_nim.invoke(rca_prompt)
             st.markdown(f"> {rca_result}")
     
+    st.markdown("---")
+    st.subheader("Human Approval & Continuous Learning")
     
+    col_fb1, col_fb2 = st.columns([3, 1])
+    with col_fb1:
+        st.text_area("Resolution Feedback / Notes", value=exc_data.get('Recommendation', 'Reviewed and approved.'), height=100)
+    
+    with col_fb2:
+        st.write("")
+        st.write("")
+        if st.button("Approve & Retrain XGBoost Model", type="primary"):
+            with st.spinner("Updating Feedback Loop & Retraining XGBoost Model..."):
+                try:
+                    from ml_pipeline import train_model
+                    train_model()
+                    st.success("Success! XGBoost model retrained with new human feedback.")
+                except Exception as e:
+                    st.error(f"Failed to retrain model: {e}")
+                    
     st.stop() # Do not render the rest of the page
 
 # Sidebar Filters
@@ -179,56 +281,66 @@ if selected_status != "All":
 
 
 
-# KPIs
-st.subheader("NAV Funds Details")
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Total Exceptions", len(filtered_df))
-col2.metric("Open / Escalated", len(filtered_df[filtered_df['Status'].isin(['Open', 'Escalated'])]))
-col3.metric("Total Discrepancy Impact", f"${filtered_df['Net Discrepancy (USD)'].sum():,.2f}")
-col4.metric("Avg Escalation Age", f"{filtered_df['Age of Escalation (Days)'].mean():.1f} Days")
-
-st.markdown("---")
-
-# Visualizations
-col_chart1, col_chart2 = st.columns(2)
-
-with col_chart1:
-    st.subheader("Exceptions by Break Type")
-    fig_pie = px.pie(filtered_df, names='Break Type', title="Break Types Distribution", hole=0.4)
-    st.plotly_chart(fig_pie, width="stretch")
-
-with col_chart2:
-    st.subheader("Net Discrepancy vs Confidence")
-    fig_scatter = px.scatter(
-        filtered_df, 
-        x='Net Discrepancy (USD)', 
-        y='Confidence Score', 
-        color='Status',
-        hover_data=['Exception ID', 'Fund Name'],
-        title="Impact vs ML Confidence"
-    )
-    st.plotly_chart(fig_scatter, width="stretch")
-
-# Data Table
-st.subheader("Exception Details (Generated by Reconciliation Skill)")
-
-# Format dataframe for display
-display_df = filtered_df[['Exception ID', 'Fund Name', 'Tickers', 'Break Type', 'Net Discrepancy (USD)', 'Confidence Score', 'Age of Escalation (Days)', 'Status', 'Recommendation']].copy()
+# Format dataframe for display based on RVT table layout
+display_df = filtered_df[['Exception ID', 'Fund Name', 'Tickers', 'Break Type', 'Internal Value (USD)', 'Variance (%)', 'Age of Escalation (Days)', 'Scenario', 'Confidence Score', 'Status']].copy()
 
 # Join tickers for display
 display_df['Tickers'] = display_df['Tickers'].apply(lambda x: ", ".join(x) if isinstance(x, list) else x)
+display_df['Age of Escalation (Days)'] = display_df['Age of Escalation (Days)'].apply(lambda x: f"{x}d")
+display_df['Confidence Score'] = display_df['Confidence Score'] * 100
 
-# Make the Exception ID itself a URL
+display_df = display_df.rename(columns={
+    'Fund Name': 'Fund name',
+    'Tickers': 'Entitys',
+    'Break Type': 'Breaks',
+    'Internal Value (USD)': 'Exposure',
+    'Variance (%)': 'Variance',
+    'Age of Escalation (Days)': 'Aging',
+    'Scenario': 'Impact',
+    'Confidence Score': 'Confidence'
+})
+
 display_df["Exception ID"] = "/?exception_id=" + display_df["Exception ID"]
+
+def style_scenario(val):
+    if 'Low' in str(val): return 'color: #198754; font-weight: bold'
+    elif 'Medium' in str(val): return 'color: #fd7e14; font-weight: bold'
+    elif 'High' in str(val): return 'color: #dc3545; font-weight: bold'
+    return ''
+
+def style_variance(val):
+    if isinstance(val, (int, float)):
+        if val <= 5.0: return 'color: #198754'
+        elif val <= 20.0: return 'color: #fd7e14'
+        else: return 'color: #dc3545'
+    return ''
+
+def style_fund(val):
+    import hashlib
+    h = int(hashlib.md5(str(val).encode('utf-8')).hexdigest(), 16)
+    hue = h % 360
+    return f'color: hsl({hue}, 70%, 40%); font-weight: bold'
+
+try:
+    styled_df = display_df.style.map(style_scenario, subset=['Impact'])\
+                                .map(style_variance, subset=['Variance'])\
+                                .map(style_fund, subset=['Fund name'])
+except AttributeError:
+    # Fallback for older pandas versions
+    styled_df = display_df.style.applymap(style_scenario, subset=['Impact'])\
+                                .applymap(style_variance, subset=['Variance'])\
+                                .applymap(style_fund, subset=['Fund name'])
 
 # Render table
 st.dataframe(
-    display_df,
+    styled_df,
     column_config={
-        "Exception ID": st.column_config.LinkColumn("Exception ID", display_text=r"exception_id=(.*)"),
-        "Net Discrepancy (USD)": st.column_config.NumberColumn(format="$%d"),
-        "Confidence Score": st.column_config.NumberColumn(format="%.2f")
+        "Exception ID": st.column_config.LinkColumn("ExceptionID", display_text=r"exception_id=(.*)"),
+        "Exposure": st.column_config.NumberColumn(format="$%.2f"),
+        "Variance": st.column_config.NumberColumn(format="%.1f%%"),
+        "Confidence": st.column_config.ProgressColumn(format="%d%%", min_value=0, max_value=100)
     },
     hide_index=True,
-    width="stretch"
+    width="stretch",
+    height=600
 )
