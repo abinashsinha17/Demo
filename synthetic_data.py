@@ -4,6 +4,7 @@ import logging
 import os
 from datetime import datetime, timedelta
 import uuid
+import os 
 
 logger = logging.getLogger("SyntheticData")
 
@@ -46,7 +47,6 @@ def generate_synthetic_data(num_records=500):
             "Break Type": break_type,
             "Quantity": quantity,
             "Internal Price (USD)": internal_price,
-            "External Price (USD)": external_price,
             "Internal Value (USD)": internal_value,
             "Status": "Pending",
             "Detected At": (datetime.now() - timedelta(days=np.random.randint(1, 15))).strftime("%Y-%m-%d %H:%M:%S")
