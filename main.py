@@ -6,35 +6,27 @@ from synthetic_data import generate_synthetic_data
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("Main")
 
-def load_reconciliation_skill():
-    # Read the logic from the markdown file
-    with open("e:\\Project\\reconciliation_skill.md", "r") as f:
-        md_content = f.read()
-
-    # Extract the python code block
-    code_match = re.search(r'```python(.*?)```', md_content, re.DOTALL)
-    if code_match:
-        skill_code = code_match.group(1).strip()
-        # Execute the code block to make ReconciliationSkill available in the current namespace
-        namespace = {}
-        exec(skill_code, namespace)
-        return namespace['ReconciliationSkill']
-    else:
-        raise ValueError("No Python code block found in reconciliation_skill.md")
+from reconciliation_skill import ReconciliationSkill
 
 if __name__ == "__main__":
     print("1. Loading synthetic records from data folder...")
+    import glob
+    import os
     try:
-        df_raw = pd.read_json("e:\\Project\\data\\exceptions.json")
-        logger.info("Loaded synthetic data from data folder.")
+        data_dir = "e:\\Project\\data"
+        json_files = glob.glob(os.path.join(data_dir, "*_breaks.json"))
+        if json_files:
+            df_raw = pd.concat([pd.read_json(f) for f in json_files], ignore_index=True)
+            logger.info(f"Loaded synthetic data from {len(json_files)} files in data folder.")
+        else:
+            raise FileNotFoundError
     except FileNotFoundError:
-        logger.error("Data file not found! Run synthetic_data.py first.")
+        logger.error("Data files not found! Run synthetic_data.py first.")
         exit(1)
     print("\n--- Raw Data (First 3 rows) ---")
-    print(df_raw[['Fund Name', 'Break Type', 'Variance (USD)', 'Status']].head(3).to_string())
+    print(df_raw[['Fund Name', 'Break Type', 'Net Discrepancy (USD)', 'Status']].head(3).to_string())
     
-    print("\n2. Loading Reconciliation Skill from markdown...")
-    ReconciliationSkill = load_reconciliation_skill()
+    print("\n2. Initializing Reconciliation Skill...")
     skill = ReconciliationSkill()
     print(f"Loaded Skill: {skill.name} - {skill.description}")
     
@@ -42,5 +34,5 @@ if __name__ == "__main__":
     df_processed = skill.process_exceptions(df_raw)
     
     print("\n--- Processed Data ---")
-    columns_to_display = ['Exception ID', 'Break Type', 'Variance (USD)', 'Status', 'Recommendation']
+    columns_to_display = ['Exception ID', 'Break Type', 'Net Discrepancy (USD)', 'Status', 'Recommendation']
     print(df_processed[columns_to_display].to_string())
