@@ -90,30 +90,31 @@ def exception_intelligence_node(state: WorkflowStateStore):
     }
 
 # ---------------------------------------------------------
-# RECONCILIATION SKILL (Called by Supervisor)
+# DISCRETE SKILL NODES (Called by Supervisor)
 # ---------------------------------------------------------
-def reconciliation_skill_node(state: WorkflowStateStore):
-    """
-    Handles Cash Breaks, Position Breaks, Trade Breaks, Cash FX / Custodian.
-    """
-    logs = [f"[{datetime.now()}] Reconciliation Skill Started"]
-    break_type = state['exception'].get('break_type')
-    
-    new_evidence = []
-    
-    # Call MCP Tools based on break type
-    if break_type == "Position Break":
-        new_evidence.append(bloomberg_mcp("Get position pricing"))
-    elif break_type == "Cash Break":
-        new_evidence.append(custodian_mcp("Get cash statement"))
-        
-    logs.append(f"[{datetime.now()}] Reconciliation Skill Completed using MCPs.")
-    
-    return {
-        "evidence": new_evidence,
-        "status": "Reconciled",
-        "audit_trail": logs
-    }
+def price_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] Price Skill Executing..."]
+    return {"evidence": [{"source": "Price Skill", "data": "Pricing logic applied"}], "status": "Reconciled", "audit_trail": logs}
+
+def fx_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] FX Skill Executing..."]
+    return {"evidence": [{"source": "FX Skill", "data": "FX rates checked"}], "status": "Reconciled", "audit_trail": logs}
+
+def cash_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] Cash Skill Executing..."]
+    return {"evidence": [custodian_mcp("Get cash statement")], "status": "Reconciled", "audit_trail": logs}
+
+def trade_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] Trade Skill Executing..."]
+    return {"evidence": [{"source": "Trade Skill", "data": "Trade blotter verified"}], "status": "Reconciled", "audit_trail": logs}
+
+def position_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] Position Skill Executing..."]
+    return {"evidence": [bloomberg_mcp("Get position pricing")], "status": "Reconciled", "audit_trail": logs}
+
+def custodian_skill_node(state: WorkflowStateStore):
+    logs = [f"[{datetime.now()}] Custodian Skill Executing..."]
+    return {"evidence": [custodian_mcp("Verify external custodian holding")], "status": "Reconciled", "audit_trail": logs}
 
 # ---------------------------------------------------------
 # 3.2 LANGGRAPH ORCHESTRATOR (SUPERVISOR)
@@ -127,10 +128,15 @@ def supervisor_node(state: WorkflowStateStore):
     next_skill = state.get('next_skill')
     
     if state.get('status') == "Triaged":
-        # Route to Reconciliation Skill
-        next_skill = "reconciliation_skill"
+        bt = state['exception'].get('break_type', '')
+        if "Cash" in bt: next_skill = "cash_skill"
+        elif "Position" in bt: next_skill = "position_skill"
+        elif "Trade" in bt: next_skill = "trade_skill"
+        elif "FX" in bt or "Currency" in bt: next_skill = "fx_skill"
+        elif "Custodian" in bt: next_skill = "custodian_skill"
+        else: next_skill = "price_skill"
     elif state.get('status') == "Reconciled":
-        if state.get('severity') == "High":
+        if state.get('severity') == "High" or state.get('severity') == "Critical":
             next_skill = "escalation"
         else:
             next_skill = "complete"
@@ -142,13 +148,19 @@ def supervisor_node(state: WorkflowStateStore):
 
 def supervisor_router(state: WorkflowStateStore):
     next_skill = state.get('next_skill')
-    if next_skill == "reconciliation_skill":
-        return "reconciliation_skill_node"
-    elif next_skill == "escalation":
-        return "escalation_node"
-    elif next_skill == "complete":
-        return "complete_node"
-    return END
+    
+    skill_map = {
+        "price_skill": "price_skill_node",
+        "fx_skill": "fx_skill_node",
+        "cash_skill": "cash_skill_node",
+        "trade_skill": "trade_skill_node",
+        "position_skill": "position_skill_node",
+        "custodian_skill": "custodian_skill_node",
+        "escalation": "escalation_node",
+        "complete": "complete_node"
+    }
+    
+    return skill_map.get(next_skill, END)
 
 def escalation_node(state: WorkflowStateStore):
     logs = [f"[{datetime.now()}] Escalated for Manual Review."]
@@ -173,30 +185,38 @@ def build_agentic_workflow():
     # Add Nodes
     workflow.add_node("exception_intelligence", exception_intelligence_node)
     workflow.add_node("supervisor", supervisor_node)
-    workflow.add_node("reconciliation_skill_node", reconciliation_skill_node)
+    workflow.add_node("price_skill_node", price_skill_node)
+    workflow.add_node("fx_skill_node", fx_skill_node)
+    workflow.add_node("cash_skill_node", cash_skill_node)
+    workflow.add_node("trade_skill_node", trade_skill_node)
+    workflow.add_node("position_skill_node", position_skill_node)
+    workflow.add_node("custodian_skill_node", custodian_skill_node)
     workflow.add_node("escalation_node", escalation_node)
     workflow.add_node("complete_node", complete_node)
     
-    # Define Edges (Orchestration)
     workflow.set_entry_point("exception_intelligence")
     
-    # After Intelligence -> Supervisor
     workflow.add_edge("exception_intelligence", "supervisor")
     
-    # Supervisor dynamic routing
     workflow.add_conditional_edges(
         "supervisor",
         supervisor_router,
         {
-            "reconciliation_skill_node": "reconciliation_skill_node",
+            "price_skill_node": "price_skill_node",
+            "fx_skill_node": "fx_skill_node",
+            "cash_skill_node": "cash_skill_node",
+            "trade_skill_node": "trade_skill_node",
+            "position_skill_node": "position_skill_node",
+            "custodian_skill_node": "custodian_skill_node",
             "escalation_node": "escalation_node",
             "complete_node": "complete_node",
             END: END
         }
     )
     
-    # After a skill, always return to Supervisor
-    workflow.add_edge("reconciliation_skill_node", "supervisor")
+    for skill_node in ["price_skill_node", "fx_skill_node", "cash_skill_node", "trade_skill_node", "position_skill_node", "custodian_skill_node"]:
+        workflow.add_edge(skill_node, "supervisor")
+        
     workflow.add_edge("escalation_node", END)
     workflow.add_edge("complete_node", END)
     
