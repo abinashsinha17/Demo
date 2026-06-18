@@ -40,47 +40,81 @@ class ReconciliationSkill:
                 
         processed_df['External Price (USD)'] = processed_df['Tickers'].apply(lambda x: price_map.get(x[0], 150.00) if isinstance(x, list) and len(x) > 0 else 150.00)
         processed_df['External Value (USD)'] = round(processed_df['Quantity'] * processed_df['External Price (USD)'], 2)
-        processed_df['Net Discrepancy (USD)'] = round(processed_df['Internal Value (USD)'] - processed_df['External Value (USD)'], 2)
+        
+        # Calculate Variance percentage between 1% and 100%
+        raw_variance_pct = (processed_df['Internal Value (USD)'] - processed_df['External Value (USD)']).abs() / processed_df['Internal Value (USD)'].replace(0, 1).abs() * 100
+        processed_df['Variance (%)'] = np.clip(raw_variance_pct, 1.0, 100.0).round(2)
 
         # Pre-process status rules
-        mask_high_variance = (processed_df['Break Type'] == 'Cash Break') & (processed_df['Net Discrepancy (USD)'].abs() > 25000)
+        mask_high_variance = (processed_df['Break Type'] == 'Cash Break') & (processed_df['Internal Value (USD)'].abs() > 25000)
         processed_df.loc[mask_high_variance, 'Status'] = 'Escalated'
         
         # Rule 2: Small position breaks
-        mask_auto_resolve = (processed_df['Break Type'] == 'Position Break') & (processed_df['Net Discrepancy (USD)'].abs() < 500)
+        mask_auto_resolve = (processed_df['Break Type'] == 'Position Break') & (processed_df['Internal Value (USD)'].abs() < 500)
         processed_df.loc[mask_auto_resolve, 'Status'] = 'Resolved'
         
 
-        # Load the XGBoost model to generate recommendations dynamically
-        model_path = r"e:\\Project\\models\\nav_xgb.pkl"
-        if os.path.exists(model_path):
-            logger.info("Generating recommendations using XGBoost model...")
-            with open(model_path, "rb") as f:
-                artifacts = pickle.load(f)
+        # Load the XGBoost models and metadata dynamically
+        import xgboost as xgb
+        metadata_path = r"e:\\Project\\models\\nav_metadata.pkl"
+        rec_path = r"e:\\Project\\models\\recommendation.json"
+        sev_path = r"e:\\Project\\models\\severity.json"
+        
+        if os.path.exists(metadata_path) and os.path.exists(rec_path):
+            logger.info("Generating recommendations using native XGBoost models...")
+            with open(metadata_path, "rb") as f:
+                metadata = pickle.load(f)
                 
-            model = artifacts['model']
-            ordinal_encoder = artifacts['ordinal_encoder']
-            label_encoder = artifacts['label_encoder']
-            features = artifacts['features']
+            label_encoder = metadata['le_recommendation']
+            le_sev = metadata['le_severity']
+            features = metadata['features']
+            
+            # Load individual models
+            model = xgb.XGBClassifier()
+            model.load_model(rec_path)
+            
+            model_sev = xgb.XGBClassifier()
+            model_sev.load_model(sev_path)
             
             # Prepare features (ensure all required columns exist)
             from datetime import datetime
             processed_df['Detected At'] = pd.to_datetime(processed_df['Detected At'])
             processed_df['Age of Escalation (Days)'] = (datetime.now() - processed_df['Detected At']).dt.days
             
-            processed_df['Abs Discrepancy (USD)'] = processed_df['Net Discrepancy (USD)'].abs()
-            processed_df['Risk Index'] = processed_df['Age of Escalation (Days)'] * np.log1p(processed_df['Abs Discrepancy (USD)'])
+            processed_df['Abs Discrepancy (USD)'] = processed_df['Internal Value (USD)'].abs()
+            processed_df['Log_Discrepancy'] = np.log1p(processed_df['Abs Discrepancy (USD)'])
+            processed_df['Risk Index'] = processed_df['Age of Escalation (Days)'] * processed_df['Log_Discrepancy']
+            processed_df['Fund_Risk'] = processed_df["Fund Name"].map(metadata.get('fund_risk_map', {})).fillna(metadata.get('mean_fund_risk', 0))
+            processed_df['Break_Frequency'] = processed_df["Break Type"].map(metadata.get('break_freq_map', {})).fillna(1)
+            processed_df['High_Value_Flag'] = (processed_df['Abs Discrepancy (USD)'] > 50000).astype(int)
+            processed_df['Old_Exception_Flag'] = (processed_df['Age of Escalation (Days)'] > 15).astype(int)
             
             X_infer = processed_df[features].copy()
             
+            # Native Categorical support
             cat_cols = ['Break Type', 'Fund Name']
-            X_infer[cat_cols] = ordinal_encoder.transform(X_infer[cat_cols])
+            for col in cat_cols:
+                X_infer[col] = X_infer[col].astype('category')
             
-            # Predict and derive confidence
+            # Predict Recommendation
             predictions = model.predict(X_infer)
             probabilities = model.predict_proba(X_infer)
-            
+            if predictions.ndim > 1:
+                predictions = np.argmax(predictions, axis=1)
             processed_df['Recommendation'] = label_encoder.inverse_transform(predictions)
+            
+            # Predict Severity
+            sev_preds = model_sev.predict(X_infer)
+            if sev_preds.ndim > 1:
+                sev_preds = np.argmax(sev_preds, axis=1)
+            processed_df['Severity'] = le_sev.inverse_transform(sev_preds)
+            
+            # Map Scenario based on Variance
+            def map_scenario_by_variance(var):
+                if var <= 5.0: return 'Low'
+                elif var <= 20.0: return 'Medium'
+                else: return 'High'
+            processed_df['Scenario'] = processed_df['Variance (%)'].apply(map_scenario_by_variance)
             
             # Use max probability as the dynamic Confidence Score
             # Jitter slightly for realistic UI display to avoid exact 1.00
